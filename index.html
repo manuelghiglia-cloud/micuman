@@ -54,14 +54,14 @@ h2{margin:0;font:700 21px var(--serif)}
 /* carousel */
 .car{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 20px 8px;scrollbar-width:none}
 .car::-webkit-scrollbar{display:none}
-.card{flex:none;width:76%;max-width:300px;height:330px;border-radius:30px;overflow:hidden;position:relative;scroll-snap-align:start;text-decoration:none;color:var(--cal);background:var(--rosa);border:0;padding:0;text-align:left}
+.card{flex:none;width:53%;max-width:210px;height:231px;border-radius:24px;overflow:hidden;position:relative;scroll-snap-align:start;text-decoration:none;color:var(--cal);background:var(--rosa);border:0;padding:0;text-align:left}
 .card img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .card .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,30,47,.25),rgba(43,30,47,0) 30%,rgba(43,30,47,0) 55%,rgba(43,30,47,.55))}
-.card .chip{position:absolute;left:14px;top:22px;padding:5px 11px;border-radius:14px;background:rgba(251,246,238,.92);color:var(--tierra);font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
-.card .fav{position:absolute;right:14px;top:18px;width:40px;height:40px;border-radius:50%;background:rgba(251,246,238,.92);display:flex;align-items:center;justify-content:center}
-.card .foot{position:absolute;left:12px;right:12px;bottom:12px;padding:12px 16px;border-radius:20px;background:rgba(43,30,47,.8);display:flex;flex-direction:column;gap:3px}
-.card .foot b{font:700 22px/1.1 var(--serif)}
-.card .foot span{font-size:13px;color:var(--arcilla)}
+.card .chip{position:absolute;left:10px;top:10px;padding:5px 11px;border-radius:14px;background:rgba(251,246,238,.92);color:var(--tierra);font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.card .fav{position:absolute;right:10px;top:8px;width:34px;height:34px;border-radius:50%;background:rgba(251,246,238,.92);display:flex;align-items:center;justify-content:center}
+.card .foot{position:absolute;left:8px;right:8px;bottom:8px;padding:9px 12px;border-radius:16px;background:rgba(43,30,47,.8);display:flex;flex-direction:column;gap:3px}
+.card .foot b{font:700 17px/1.1 var(--serif)}
+.card .foot span{font-size:12px;line-height:1.25;color:var(--arcilla)}
 .card .agy{position:absolute;left:0;right:0;top:0;height:8px}
 .card.done .foot{background:rgba(45,69,51,.88)}
 /* mini */
@@ -315,7 +315,7 @@ function vInicio(){
   const cards=(ui.cat==='c'?cul:list).slice().sort((x,y)=>(!!data.shared.done[x.id])-(!!data.shared.done[y.id])).map(s=>{
     const done=!!data.shared.done[s.id];
     const sc=s.vote?both(s.vote).avg:null;
-    return '<button class="card'+(done?' done':'')+'" data-open="'+s.id+'">'+(photo(s.id)?'<img class="ph" src="'+photo(s.id)+'" alt="">':'<div style="position:absolute;inset:0;background:var(--rosa);display:flex;align-items:center;justify-content:center"><img src="'+IMG[s.st||'empanada']+'" alt="" style="width:70%;transform:rotate(-6deg)"></div>')+'<div class="shade"></div><div class="agy"></div><span class="chip">'+(s.day==='sab'?'Sáb':'Dom')+' · '+s.t+'</span>'+(done?'<span class="fav" style="background:var(--puerta)">'+ic('check',18,'#fff',3)+'</span>':'')+'<span class="foot"><b>'+esc(s.name)+'</b><span>'+esc(s.short)+(sc!=null?' · 🍋 '+fmt(sc):'')+'</span></span></button>';
+    return '<button class="card'+(done?' done':'')+'" data-open="'+s.id+'">'+(photo(s.id)?'<img class="ph" src="'+photo(s.id)+'" alt="">':'<div style="position:absolute;inset:0;background:var(--rosa);display:flex;align-items:center;justify-content:center"><img src="'+IMG[s.st||'empanada']+'" alt="" style="width:70%;transform:rotate(-6deg)"></div>')+'<div class="shade"></div><span class="chip">'+(s.day==='sab'?'Sáb':'Dom')+' · '+s.t+'</span>'+(done?'<span class="fav" style="background:var(--puerta)">'+ic('check',18,'#fff',3)+'</span>':'')+'<span class="foot"><b>'+esc(s.name)+'</b><span>'+esc(s.short)+(sc!=null?' · 🍋 '+fmt(sc):'')+'</span></span></button>';
   }).join('');
   const nx=nextStop();
   const tabs=[['todo','Todo'],['e','Empanadas'],['s','Sánguches'],['m','Miga'],['c','Cultura']].map(t=>'<button class="tab'+(ui.cat===t[0]?' on':'')+'" data-cat="'+t[0]+'">'+t[1]+'</button>').join('');
